@@ -22,6 +22,22 @@ Reproduce: `python run_all.py` → `python -m unittest discover tests` (6/6 pass
 
 ---
 
+## Live app (React + Vite + Gemini)
+
+A white, single-page review console that runs both automations end to end with a **live LLM (Google Gemini, free tier)**.
+
+```
+cd app && npm install
+# put your key in ../.env  (see .env.example; never committed)
+npm run dev        # http://localhost:5173  (API on :8787)
+npm test           # JS engine vs hand-computed numbers
+```
+- **Gemini extracts, code decides.** `server/index.js` forces JSON output (temperature 0) and keeps the key server-side. `src/lib/engine.js` does every calculation, status, total.
+- **Three guard-rails on every LLM output:** (1) schema/quote check - the evidence quote must appear verbatim in the source; (2) business validation - PO exists, qty matches, invoice foots; (3) **cross-check against an independent offline regex extractor** - any disagreement blocks the extraction for human review. Gemini draft rewrites are number-verified: any figure not in the computed data is flagged.
+- **Free-tier resilience:** model fallback chain + retry, then offline regex fallback, so the demo never dead-ends.
+- **Humans stay in charge:** drafts only, approval checkboxes for emails and the payment batch; the app never sends or pays.
+- Tested live: all 2 emails + 5 invoices extracted by Gemini reproduce the exact Python results (Rs 454,100 safe / Rs 546,540 hold / Rs 182,700 duplicate blocked).
+
 ## Part 1 — Design
 
 ### 1. Tools and why
