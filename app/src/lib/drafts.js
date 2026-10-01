@@ -8,11 +8,11 @@ export function vendorQueryDraft(po, row, invoice) {
     subject: `Query on Bill ${invoice.invoice_no} (${po.po_no}) - billed qty exceeds goods received`,
     body: `Dear ${po.vendor} accounts team,
 
-Bill ${invoice.invoice_no} dated ${invoice.invoice_date} is for ${invoice.qty.toLocaleString('en-IN')} ${po.unit} ${po.item} against ${po.po_no} (${inr(invoice.total)} incl. GST). Our goods receipt (GRN) shows ${po.grn_qty.toLocaleString('en-IN')} ${po.unit} received, a shortfall of ${exQty.toLocaleString('en-IN')} ${po.unit}. The rate (Rs ${invoice.rate}/${po.unit}) matches the PO.
+Bill ${invoice.invoice_no} dated ${invoice.invoice_date} is for ${invoice.qty.toLocaleString('en-US')} ${po.unit} ${po.item} against ${po.po_no} (${inr(invoice.total)} incl. GST). Our goods receipt (GRN) shows ${po.grn_qty.toLocaleString('en-US')} ${po.unit} received, a shortfall of ${exQty.toLocaleString('en-US')} ${po.unit}. The rate (Rs ${invoice.rate}/${po.unit}) matches the PO.
 
 We cannot release payment for material not received. Please either:
- (a) send a revised invoice / credit note for ${po.grn_qty.toLocaleString('en-IN')} ${po.unit} - ${inr(net)} + GST ${invoice.gst_pct}% ${inr(gst)} = ${inr(net + gst)}; or
- (b) confirm the delivery date and challan/LR number for the balance ${exQty.toLocaleString('en-IN')} ${po.unit}, and we will pay on receipt.
+ (a) send a revised invoice / credit note for ${po.grn_qty.toLocaleString('en-US')} ${po.unit} - ${inr(net)} + GST ${invoice.gst_pct}% ${inr(gst)} = ${inr(net + gst)}; or
+ (b) confirm the delivery date and challan/LR number for the balance ${exQty.toLocaleString('en-US')} ${po.unit}, and we will pay on receipt.
 
 Payment will be processed in the normal cycle once we receive the corrected document.
 

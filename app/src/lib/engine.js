@@ -1,8 +1,8 @@
 // Deterministic engine. ALL maths, statuses and totals live here - never in the LLM.
 // JS port of src/issue1_reorder.py and src/issue2_invoice_match.py (the Python is the tested reference).
 
-export const inr = (x) => 'Rs ' + Number(x).toLocaleString('en-IN', { maximumFractionDigits: 2 })
-export const num = (x) => Number(x).toLocaleString('en-IN')
+export const inr = (x) => 'Rs ' + Number(x).toLocaleString('en-US', { maximumFractionDigits: 2 })
+export const num = (x) => Number(x).toLocaleString('en-US')
 const norm = (s) => s.replace(/\s+/g, ' ').trim()
 const n = (s) => parseFloat(String(s).replace(/,/g, ''))
 

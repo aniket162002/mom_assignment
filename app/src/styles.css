@@ -82,3 +82,4 @@ h2.sec{font-size:22px;letter-spacing:-.02em;margin:30px 0 4px}
 .dtable td:first-child{font-weight:600;white-space:nowrap;width:170px}
 @media(max-width:900px){.pipeline,.kpis,.grid2,.cmp{grid-template-columns:1fr 1fr}header.top{flex-wrap:wrap}.hero h1{font-size:30px}}
 @media(max-width:560px){.pipeline,.kpis,.grid2,.cmp{grid-template-columns:1fr}.shell{padding:0 16px 60px}}
+.grid2>*,.cmp>*{min-width:0}

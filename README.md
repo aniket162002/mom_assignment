@@ -22,6 +22,16 @@ Reproduce: `python run_all.py` → `python -m unittest discover tests` (6/6 pass
 
 ---
 
+## Submission document & live screenshots
+
+- **`docs/MOM_Automation_Assignment_Submission.pdf`** - the professional submission document (all deliverables, with real screenshots).
+- `docs/screenshots/` - 16 real screenshots captured from the running app with live Gemini calls (`app/scripts/screenshots.mjs`).
+
+| | |
+|---|---|
+| ![Issue 1 results](docs/screenshots/05-issue1-item-level-results.png) | ![Issue 2 exception report](docs/screenshots/12-issue2-exception-report.png) |
+| Issue 1 - item-level results | Issue 2 - exception report |
+
 ## Live app (React + Vite + Gemini)
 
 A white, single-page review console that runs both automations end to end with a **live LLM (Google Gemini, free tier)**.
@@ -101,8 +111,10 @@ Hand check, Almonds: cover 900/150 = 6; ROP 150×10+450 = 1,950; qty = (150×14+
 - The Sai Agro price rise affects the peanut order — the recommended action says to place it before 1 Nov.
 - Finance side shows 200 kg of PO-2287 peanuts was short-delivered, yet this sheet shows no open peanut PO — a data question for procurement.
 
-### Procurement alert (80 words)
-> PROCUREMENT ALERT - 1 critical, 3 reorder, 1 OK. CRITICAL: Almonds - 6 days cover, 10-day lead time. Kaveri's PO-2291 (1,500 kg) slipped to day 11 (customs hold), so ~750 kg is uncovered. Approve expedite/spot buy today. REORDER: Roasted Peanuts 6,000 kg; PET Jars 500g 18,000 units; Labels (MOM PB) 18,000 units. Labels sit exactly at ROP (5d cover vs 4d lead). Sai Agro: peanut price +4% from 1 Nov - order peanuts before then. Rolled Oats OK (12d).
+### Procurement alert (72 words)
+> PROCUREMENT ALERT - 1 critical, 3 reorder, 1 OK. CRITICAL: Almonds - 6 days cover, 10-day lead time. PO-2291 (1,500 kg) now lands day 11, so ~750 kg is uncovered. Approve expedite/spot buy today. REORDER: Roasted Peanuts 6,000 kg; PET Jars 500g 18,000 units; Labels (MOM PB) 18,000 units. Labels (MOM PB) sit exactly at ROP. Sai Agro Traders: price +4% from 1st Nov - order before then. Rolled Oats OK (12d).
+
+(The Python reference generates a slightly different wording of the same alert, 80 words; both are under the 100-word limit.)
 
 ### Draft email to supplier — most urgent item: Almonds (Kaveri Nuts)
 ```

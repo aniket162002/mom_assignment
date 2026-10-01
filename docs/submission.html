@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>MOM Automation Assignment — Submission</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+@page{size:A4;margin:16mm 14mm 16mm 14mm}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#0f172a;font:10.5pt/1.55 Inter,Arial,sans-serif}
+h1{font-size:30pt;letter-spacing:-.03em;margin:0 0 6px;line-height:1.1}
+h2{font-size:17pt;letter-spacing:-.02em;margin:0 0 6px;padding-top:4px;border-top:3px solid #4f46e5;padding-top:10px}
+h3{font-size:11.5pt;margin:16px 0 6px;break-after:avoid}tr{break-inside:avoid}
+p{margin:6px 0}.mut{color:#64748b}
+.pg{page-break-before:always}
+.cover{height:255mm;display:flex;flex-direction:column;justify-content:center}
+.brand{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-weight:800;font-size:20px;margin-bottom:18px}
+.grad{background:linear-gradient(90deg,#4f46e5,#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent}
+table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:8px 0}
+th{background:#f6f7fb;text-align:left;padding:7px 9px;font-size:8.5pt;text-transform:uppercase;letter-spacing:.04em;color:#64748b;border-bottom:1px solid #e5e7ef}
+td{padding:7px 9px;border-bottom:1px solid #e5e7ef;vertical-align:top}
+td.r{text-align:right}
+figure{margin:10px 0 14px;break-inside:avoid}
+figure img{width:100%;border:1px solid #e5e7ef;border-radius:8px;display:block}
+figcaption{font-size:8.5pt;color:#64748b;margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.kv div{border:1px solid #e5e7ef;border-radius:10px;padding:10px 12px}.kv b{display:block;font-size:15pt}
+.kv small{color:#64748b;font-size:8pt;text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.ok{background:#ecfdf5;border-color:#a7f3d0!important}.bad{background:#fef2f2;border-color:#fecaca!important}.wr{background:#fffbeb;border-color:#fde68a!important}
+.note{border-left:3px solid #4f46e5;background:#eff6ff;padding:8px 12px;border-radius:0 8px 8px 0;margin:10px 0;font-size:9.5pt}
+.box{background:#f6f7fb;border:1px solid #e5e7ef;border-radius:8px;padding:10px 12px;white-space:pre-wrap;font-size:9.5pt}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;font-size:8pt;font-weight:700}
+.t-l{background:#ede9fe;color:#7c3aed}.t-c{background:#eff6ff;color:#2563eb}.t-h{background:#fffbeb;color:#d97706}
+ul{margin:6px 0;padding-left:18px}li{margin:3px 0}
+code{font-family:Consolas,monospace;background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:9pt}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+</style></head><body>
+
+<!-- COVER -->
+<section class="cover">
+  <div class="brand">M</div>
+  <div class="mut" style="font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:9pt">Take-Home Assignment · Submission</div>
+  <h1>Procurement &amp; Finance<br><span class="grad">Automation</span></h1>
+  <p style="font-size:13pt;max-width:520px" class="mut">Raw-material reorder alerts and vendor-invoice matching — built as a live React console with Gemini extraction, a deterministic rules engine, and human approval on every money decision.</p>
+  <div class="kv" style="max-width:640px;margin-top:26px">
+    <div><small>Stack</small><b style="font-size:11pt">React · Vite · Node · Gemini</b></div>
+    <div><small>Maths</small><b style="font-size:11pt">100% in code</b></div>
+    <div><small>Tests</small><b style="font-size:11pt">Python + JS, hand-checked</b></div>
+    <div><small>Evidence</small><b style="font-size:11pt">Live screenshots</b></div>
+  </div>
+  <table style="max-width:640px;margin-top:20px">
+    <tr><th>Required deliverable</th><th>Section</th></tr>
+    <tr><td>Part 1 — design answers</td><td>1</td></tr>
+    <tr><td>Issue 1 — build evidence, item results, alert, supplier email</td><td>2</td></tr>
+    <tr><td>Issue 2 — build evidence, exception report, two drafts, totals</td><td>3</td></tr>
+    <tr><td>Part 4 — reliability note (6–8 sentences)</td><td>4</td></tr>
+    <tr><td>Reproduction, validation and repository</td><td>5</td></tr>
+  </table>
+  <p class="mut" style="margin-top:18px">Every screenshot in this document was captured from the running application using a live Gemini call — not mock-ups.</p>
+</section>
+
+<!-- PART 1 -->
+<section class="pg">
+<h2>1 · Part 1 — Design</h2>
+<p class="mut">One principle runs through everything: <b>an LLM reads messy text; code does every number and status; humans approve anything that moves money.</b></p>
+<figure><img style="width:66%;margin:0 auto" src="screenshots/15-part1-design.png"><figcaption>Figure 1 — Design tab of the console (Part 1 answers).</figcaption></figure>
+
+<h3>1.1 Which tools and why</h3>
+<table>
+<tr><th style="width:22%">Layer</th><th>Choice and reason</th></tr>
+<tr><td>Inputs</td><td>Google Sheet (stock, PO/GRN) plus Gmail labels for supplier and AP emails — teams keep working as they do today.</td></tr>
+<tr><td>Orchestration</td><td>Apps Script time trigger or n8n for the daily email → sheet → alert hop; free, readable by non-engineers. The React console is the review UI.</td></tr>
+<tr><td>Logic</td><td>Plain code (JS engine, mirrored by a Python reference). Deterministic, testable, auditable.</td></tr>
+<tr><td>Text understanding</td><td>Gemini free tier behind a thin Node server, JSON-only output at temperature 0; key stays server-side.</td></tr>
+<tr><td>Output</td><td>Drafts only (never auto-send), alert, exception report, audit log.</td></tr>
+</table>
+
+<h3>1.2 Where the LLM is used — and deliberately not</h3>
+<table>
+<tr><th></th><th><span class="tag t-l">Use the LLM for</span></th><th>Never use it for</th></tr>
+<tr><td><b>Issue 1</b></td><td>Reading supplier emails into <code>{po_ref, eta_delay_days, price_change_pct, lead_time_changed}</code>; polishing the supplier email.</td><td>Days of cover, ROP, status, order qty; deciding whether a PO “counts”; converting “6 days later” into an ETA (code adds 5 + 6); choosing order size or supplier.</td></tr>
+<tr><td><b>Issue 2</b></td><td>Extracting fields from 5 layouts; spotting “bank account changed / reminder / payment pending” language; polishing drafts.</td><td>PO/rate/GRN matching, footing of tax and totals, duplicate detection, totals, release vs hold, anything about bank accounts.</td></tr>
+</table>
+<div class="note">LLM output is treated as <b>untrusted input</b>: quotes must appear verbatim in the source, documents must foot, POs and vendors must exist, and a second independent extractor must agree — otherwise it is rejected and shown to a human. This also blunts prompt-injection inside emails.</div>
+
+<h3>1.3 Steps that always need a human</h3>
+<ol style="margin:6px 0;padding-left:18px">
+<li><b>Approving any purchase order and its size</b> — Almonds: formula says 150 kg, yet lead time (10 d) exceeds cover (6 d), so size alone cannot fix it.</li>
+<li><b>Alternate / spot suppliers, premium freight</b> — a cost vs stock-out trade-off.</li>
+<li><b>Releasing every payment batch</b> — maker–checker; automation only recommends.</li>
+<li><b>Every exception</b> (rate, over-billing, part-pay, credit note) — a negotiation, not arithmetic.</li>
+<li><b>Changing a vendor bank account</b> — highest-fraud step; call-back to the number on file, two approvers, cooling-off.</li>
+<li><b>Duplicate overrides and sending external email</b> — the app creates drafts only.</li>
+<li><b>Anything the extractor is unsure about</b> — failed validation goes to an exception queue.</li>
+</ol>
+</section>
+
+<!-- ISSUE 1 -->
+<section class="pg">
+<h2>2 · Issue 1 — Raw Material Reorder Alerts</h2>
+<h3>2.1 How the build works</h3>
+<table>
+<tr><th>Step</th><th>Who</th><th>What</th></tr>
+<tr><td>1 Extract</td><td><span class="tag t-l">Gemini</span></td><td>Reads both supplier emails → JSON facts only (prompt in <code>prompts/</code>, server in <code>app/server/index.js</code>).</td></tr>
+<tr><td>2 Validate</td><td><span class="tag t-c">Code</span></td><td>Quote verbatim in source; PO exists in sheet; qty matches; independent regex cross-check agrees.</td></tr>
+<tr><td>3 Calculate</td><td><span class="tag t-c">Code</span></td><td>Cover = stock ÷ usage; ROP = usage × lead + safety; PO counts only if ETA ≤ cover; CRITICAL / REORDER / OK; qty = usage × 14 + safety − (stock + all open PO).</td></tr>
+<tr><td>4 Approve</td><td><span class="tag t-h">Human</span></td><td>Procurement head reviews alert and supplier email; the app never sends.</td></tr>
+</table>
+<figure><img style="width:68%;margin:0 auto" src="screenshots/03-issue1-inputs-and-gemini-extraction.png"><figcaption>Figure 2 — Inputs: stock table, the two supplier emails and the live Gemini extraction (model latency and “validated ✓” badges shown; extracted JSON beneath each email).</figcaption></figure>
+<p><b>Key reading of Email A:</b> “6 days later than the date we had committed” is a <i>relative delay</i>, so the ETA becomes 5 + 6 = <b>11 days</b>, not 6. Email B (+4% peanut price from 1 Nov, lead times unchanged) changes no stock number and is raised as a price flag.</p>
+<figure><img src="screenshots/04-issue1-email-changes-audit-log.png"><figcaption>Figure 3 — Audit log of what the emails changed. Almonds flip OK → CRITICAL because the PO now lands after stock-out.</figcaption></figure>
+</section>
+
+<section class="pg">
+<h3>2.2 Item-level results</h3>
+<figure><img src="screenshots/05-issue1-item-level-results.png"><figcaption>Figure 4 — Days of cover, ROP, status, suggested quantity and a one-line action for every item.</figcaption></figure>
+<table>
+<tr><th>Item</th><th class="r">Days cover</th><th class="r">ROP</th><th>Status</th><th class="r">Suggested qty</th></tr>
+<tr><td>Roasted Peanuts</td><td class="r">6</td><td class="r">4,200</td><td>REORDER</td><td class="r">6,000 kg</td></tr>
+<tr><td>Almonds</td><td class="r">6</td><td class="r">1,950</td><td><b>CRITICAL</b></td><td class="r">150 kg</td></tr>
+<tr><td>Rolled Oats</td><td class="r">12</td><td class="r">2,250</td><td>OK</td><td class="r">—</td></tr>
+<tr><td>PET Jars 500g</td><td class="r">6.5</td><td class="r">15,000</td><td>REORDER</td><td class="r">18,000 units</td></tr>
+<tr><td>Labels (MOM PB)</td><td class="r">5</td><td class="r">9,000</td><td>REORDER</td><td class="r">18,000 units</td></tr>
+</table>
+<p class="mut">Hand check (Almonds): 900 ÷ 150 = 6 · ROP 150×10+450 = 1,950 · qty (150×14+450) − (900+1,500) = 150. The delayed PO (day 11) does not count toward cover because 11 &gt; 6.</p>
+<div class="note"><b>Judgement flags:</b> (1) Almonds’ formula quantity is small because all open PO quantity is deducted, but that PO cannot land inside 6 days of cover — a human must choose expedite / part-ship / spot-buy (~750 kg gap). (2) Labels sit exactly at ROP with only 1 day of margin over lead time. (3) Peanuts should be ordered before the +4% price rise on 1 Nov.</div>
+
+</section>
+<section class="pg">
+<h3>2.3 Procurement alert (72 words, limit 100)</h3>
+<figure><img src="screenshots/06-issue1-procurement-alert.png"><figcaption>Figure 5 — Alert with automatic word-count check.</figcaption></figure>
+<div class="box">PROCUREMENT ALERT - 1 critical, 3 reorder, 1 OK. CRITICAL: Almonds - 6 days cover, 10-day lead time. PO-2291 (1,500 kg) now lands day 11, so ~750 kg is uncovered. Approve expedite/spot buy today. REORDER: Roasted Peanuts 6,000 kg; PET Jars 500g 18,000 units; Labels (MOM PB) 18,000 units. Labels (MOM PB) sit exactly at ROP. Sai Agro Traders: price +4% from 1st Nov - order before then. Rolled Oats OK (12d).</div>
+
+<h3>2.4 Draft email to supplier — most urgent item: Almonds (Kaveri Nuts)</h3>
+<figure><img src="screenshots/07-issue1-supplier-email-draft.png"><figcaption>Figure 6 — Left: code-built draft (all figures from the engine). Right: live Gemini rewrite, automatically checked — “every figure matches computed data ✓”. Reviewer approval checkbox is required before sending.</figcaption></figure>
+</section>
+
+<!-- ISSUE 2 -->
+<section class="pg">
+<h2>3 · Issue 2 — Invoice Matching &amp; Exception Report</h2>
+<h3>3.1 How the build works</h3>
+<table>
+<tr><th>Step</th><th>Who</th><th>What</th></tr>
+<tr><td>1 Extract</td><td><span class="tag t-l">Gemini</span></td><td>Five documents in five layouts (<i>24-Sep-2026</i>, <i>25/09/2026</i>, <i>26 Sep 26</i>; <i>PO-2285</i> vs <i>PO 2287</i>) → one JSON schema.</td></tr>
+<tr><td>2 Validate</td><td><span class="tag t-c">Code</span></td><td>qty × rate = taxable; taxable + GST = total; total present in source; independent regex cross-check on invoice no., PO, qty, rate, taxable, total.</td></tr>
+<tr><td>3 Match</td><td><span class="tag t-c">Code</span></td><td>PO exists · vendor/item agree · billed rate = PO rate · billed qty ≤ GRN · invoice number never seen before.</td></tr>
+<tr><td>4 Release</td><td><span class="tag t-h">Human</span></td><td>Finance Controller approves the payment batch; bank changes are never accepted from email.</td></tr>
+</table>
+<figure><img src="screenshots/10-issue2-documents-gemini-extraction.png"><figcaption>Figure 7 — All five finance-inbox documents with live Gemini extraction and validation badges.</figcaption></figure>
+</section>
+
+<section class="pg">
+<h3>3.2 Exception report</h3>
+<figure><img style="width:76%;margin:0 auto" src="screenshots/12-issue2-exception-report.png"><figcaption>Figure 8 — Exception report with the six required columns: Invoice · Vendor · Status · Reason · Amount at risk (Rs) · Recommended action.</figcaption></figure>
+<table>
+<tr><th>Invoice</th><th>Finding</th><th class="r">At risk (Rs)</th></tr>
+<tr><td>SP/2026/0871</td><td>Matched (rate 11.50, qty 20,000 = GRN).</td><td class="r">0</td></tr>
+<tr><td>OPL-4410</td><td>Rate 1.35 vs PO 1.20 → +4,500 + 18% GST.</td><td class="r">5,310</td></tr>
+<tr><td>SAT/889</td><td>Billed 5,000 kg vs GRN 4,800 → 200 kg × 95 + 5% GST.</td><td class="r">19,950</td></tr>
+<tr><td>GOM/1207</td><td>Matched — release once, to bank account on vendor master only.</td><td class="r">0</td></tr>
+<tr><td>GOM/1207 (Doc 5)</td><td><b>Duplicate</b> reminder + request to pay a <b>new bank account ending 4821</b> — suspected payment fraud.</td><td class="r">182,700</td></tr>
+</table>
+
+<h3>3.3 Totals</h3>
+<figure><img src="screenshots/11-issue2-totals-kpis.png"><figcaption>Figure 9 — Totals computed in code (reconciled: safe + hold = total submitted).</figcaption></figure>
+<p><b>Total submitted</b> Rs 1,000,640 (4 unique invoices; Rs 1,183,340 across 5 documents) · <b>Safe to release now</b> Rs 454,100 (271,400 + 182,700) · <b>On hold</b> Rs 546,540 (47,790 + 498,750) · <b>Duplicate blocked</b> Rs 182,700. <span class="mut">Stricter option if GOM/1207 is also held until the bank-change is verified: release Rs 271,400, hold Rs 729,240.</span></p>
+</section>
+
+<section class="pg">
+<h3>3.4 Draft 1 — query to vendor (Sai Agro Traders, SAT/889)</h3>
+<figure><img src="screenshots/13-issue2-vendor-query-draft.png"><figcaption>Figure 10 — Vendor query: code-built draft and Gemini rewrite with figure verification.</figcaption></figure>
+<h3>3.5 Draft 2 — internal note to the Finance Controller</h3>
+<figure><img src="screenshots/14-issue2-controller-note.png"><figcaption>Figure 11 — Concerns beyond simple matching: bank-detail fraud pattern, duplicate control, rate and quantity exceptions, open-PO data question, peanut price rise.</figcaption></figure>
+</section>
+
+<!-- PART 4 -->
+<section class="pg">
+<h2>4 · Part 4 — Reliability note</h2>
+<figure><img style="width:70%;margin:0 auto" src="screenshots/16-part4-reliability.png"><figcaption>Figure 12 — Reliability tab of the console.</figcaption></figure>
+<div class="box" style="font-size:10.5pt;line-height:1.7">To keep the numbers correct every day, all arithmetic and status logic runs in tested code (hand-computed regression tests in both Python and JavaScript), the LLM only extracts text into a fixed JSON schema, and each extracted field must quote its source, foot (qty × rate = taxable, taxable + GST = total) and reference a PO and vendor that exist, otherwise the item goes to an exception queue instead of being guessed. Each daily run is logged with inputs, outputs and a diff against yesterday, and sanity alerts fire on anything odd such as zero documents processed, usage swinging more than 30%, or a status flipping from OK to CRITICAL without a stock or email change. For money, I would use maker–checker approval (the automation prepares, a person releases), a ledger of every invoice number ever seen so duplicates are blocked automatically, and a hard rule that bank details change only through a call-back to the number already on file with two approvers, never from an email. The automation would never hold payment credentials, would only produce reports and drafts, and would keep an audit trail of who approved what. If a supplier or vendor changes their email or invoice format, the schema-based LLM extractor absorbs most variation, but anything that fails validation or has low confidence is routed to a human and not paid. That human-corrected example is added to the prompt's examples and to a weekly test set of real documents, so format drift is caught within days rather than as a wrong payment. A monthly reconciliation of paid amounts against the GRN and PO ledgers, plus a short list of known vendor email domains, closes the loop.</div>
+</section>
+
+<!-- APPENDIX -->
+<section class="pg">
+<h2>5 · Validation, reproduction and repository</h2>
+<h3>5.1 Reliability controls built into the app</h3>
+<ul>
+<li><b>Three guard-rails on every LLM output:</b> verbatim-quote check, business validation (PO exists, qty matches, invoice foots) and cross-check against an independent offline extractor — disagreement blocks the extraction.</li>
+<li><b>Bug caught during live testing:</b> Gemini once wrapped Email A’s JSON in an array, which silently left Almonds “OK”. The server now unwraps it and the validator rejects non-objects — exactly the failure these controls exist to catch.</li>
+<li><b>Free-tier resilience:</b> model fallback chain with retry, then offline regex fallback, so the workflow never dead-ends.</li>
+<li><b>Number-verified drafts:</b> any figure in a Gemini draft that is not in the computed data is flagged and must not be used.</li>
+<li><b>Humans in charge:</b> approval checkboxes for each email and for the payment batch; the app never sends email or initiates payment.</li>
+</ul>
+<h3>5.2 Live end-to-end test result</h3>
+<p>All 2 emails and 5 invoices were extracted by Gemini and passed through the engine; results equal the independent Python implementation and the hand calculations: Almonds CRITICAL, Peanuts / PET Jars / Labels REORDER (6,000 / 18,000 / 18,000), Rolled Oats OK; invoice statuses MATCHED / RATE MISMATCH / QTY EXCEEDS GRN / MATCHED / DUPLICATE; Rs 454,100 safe, Rs 546,540 hold, Rs 182,700 blocked.</p>
+<h3>5.3 Run it</h3>
+<div class="box">cd app
+npm install
+# create ../.env from .env.example  (GEMINI_API_KEY from aistudio.google.com)
+npm run dev      # console at http://localhost:5173
+npm test         # JS engine vs hand-computed numbers
+python run_all.py &amp;&amp; python -m unittest discover tests   # Python reference + tests</div>
+<h3>5.4 Repository layout</h3>
+<table>
+<tr><td><code>app/</code></td><td>React + Vite console, Node Gemini gateway, JS rules engine and tests, screenshot script</td></tr>
+<tr><td><code>src/</code> · <code>tests/</code> · <code>run_all.py</code></td><td>Python reference implementation of both automations and hand-checked tests</td></tr>
+<tr><td><code>prompts/</code></td><td>LLM extraction prompts, schemas and guard-rails</td></tr>
+<tr><td><code>data/</code> · <code>outputs/</code></td><td>Inputs exactly as in the PDF; generated reports, CSVs and drafts</td></tr>
+<tr><td><code>docs/</code></td><td>This document and all screenshots (<code>docs/screenshots/</code>)</td></tr>
+</table>
+<p class="mut">Repository: github.com/aniket162002/mom_assignment</p>
+</section>
+</body></html>
