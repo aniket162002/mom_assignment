@@ -1,0 +1,6 @@
+Invoice,Vendor,Status,Reason,Amount at risk (Rs),Recommended action
+SP/2026/0871,Shree Packaging Pvt Ltd,MATCHED,"3-way match OK (PO no., rate, qty <= GRN)",0.0,Release for payment.
+OPL-4410,Om Print Labels,EXCEPTION - RATE MISMATCH,"billed rate 1.35 vs PO rate 1.20 (+0.15/unit x 30,000 = Rs 5,310.00 incl. GST overbilled)",5310.0,"Hold full invoice. Request credit note / corrected invoice at PO rate (payable Rs 42,480)."
+SAT/889,Sai Agro Traders,EXCEPTION - QTY EXCEEDS GRN,"billed qty 5,000 > GRN 4,800 (billed 200 not received = Rs 19,950 incl. GST)",19950.0,"Hold. Ask vendor for revised invoice for 4,800 (payable Rs 478,800) or proof of delivery of balance; Controller may part-pay the received value."
+GOM/1207,Ganga Oats Mills,MATCHED,"3-way match OK (PO no., rate, qty <= GRN); a bank-detail change request arrived with its duplicate (Doc 5) - see that row",0.0,"Release ONCE, only to the bank account already on vendor master (ignore the 'new account' request)."
+GOM/1207 (Doc 5),Ganga Oats Mills,DUPLICATE - DO NOT PAY,"Invoice no. GOM/1207 already received as Doc 4 (same PO, qty, amount); this is an email reminder, not a new bill; BANK-DETAIL CHANGE requested by email (new a/c ending 4821) - unverified; possible payment fraud",182700.0,Block. Pay the original once only; no second payment.

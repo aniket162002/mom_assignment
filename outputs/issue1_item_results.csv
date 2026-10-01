@@ -1,0 +1,6 @@
+Item,Unit,Current stock,Days of cover,ROP,PO counted,Status,Suggested order qty,Recommended action
+Roasted Peanuts,kg,3600,6.0,4200,0,REORDER,6000,"Place PO for 6,000 kg today; 6d cover vs 5d lead time (stock 3,600 <= ROP 4,200)."
+Almonds,kg,900,6.0,1950,0,CRITICAL,150,Stock-out in 6d vs 10d lead time; PO-2291 lands day 11 (gap 5d = ~750 kg). Expedite/part-ship PO and source spot cover now; place 150 kg per formula (human to confirm size).
+Rolled Oats,kg,3000,12.0,2250,0,OK,0,"No action; 12d cover, stock 3,000 above ROP 2,250."
+PET Jars 500g,units,13000,6.5,15000,0,REORDER,18000,"Place PO for 18,000 units today; 6.5d cover vs 6d lead time (stock 13,000 <= ROP 15,000)."
+Labels (MOM PB),units,9000,5.0,9000,0,REORDER,18000,"Place PO for 18,000 units today; 5d cover vs 4d lead time (stock 9,000 <= ROP 9,000)."

@@ -1,0 +1,18 @@
+To: Finance Controller
+Subject: Payment-fraud risk on Ganga Oats Mills (GOM/1207) + 2 exceptions - action needed before today's payment run
+
+1. HIGH RISK - suspected bank-detail fraud. A "payment pending" email for GOM/1207 (Rs 182,700) asks us to pay a NEW
+   account (ending 4821). Invoice GOM/1207 itself matches PO-2289 and GRN, but this email is a duplicate of it,
+   adds payment pressure, and changes bank details by email - a classic business-email-compromise pattern.
+   Recommend: pay the original once, to the account already on the vendor master only; do NOT update the master from this
+   email; verify the change by calling the vendor on the number on file (not the one in the email); check the sender
+   domain/headers; any approved change needs a second approver and a cooling-off before first payment.
+2. Duplicate control. GOM/1207 arrived twice. Confirm our system blocks a second payment of the same vendor+invoice number.
+3. Rate mismatch - Om Print OPL-4410: billed Rs 1.35 vs PO Rs 1.20 (+Rs 5,310 incl. GST). Is there an approved rate revision
+   we are unaware of? If not, credit note needed; check whether other Om Print invoices carry the same rate.
+4. Over-billing - Sai Agro SAT/889: 200 kg billed but not received (Rs 19,950 incl. GST). Query drafted. Note procurement's
+   stock sheet shows no open PO for peanuts: is the 200 kg balance still due, or is PO-2287 closed short?
+   Sai Agro has also announced +4% peanut price from 1 Nov - ensure new rates are not applied to existing POs.
+5. Pattern worth watching: 3 of 4 vendors' invoices were dated 24-26 Sep and arrived together; confirm none of them were paid
+   outside this cycle.
+Amounts: safe to release Rs 454,100 (SP/2026/0871 + GOM/1207 to master-data account); on hold Rs 546,540; duplicate Rs 182,700 blocked.

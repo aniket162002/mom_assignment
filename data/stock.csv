@@ -1,0 +1,6 @@
+item,unit,current_stock,avg_daily_usage,lead_time_days,safety_stock,open_po_qty,open_po_ref,open_po_eta_days
+Roasted Peanuts,kg,3600,600,5,1200,0,,
+Almonds,kg,900,150,10,450,1500,PO-2291,5
+Rolled Oats,kg,3000,250,7,500,0,,
+PET Jars 500g,units,13000,2000,6,3000,0,,
+Labels (MOM PB),units,9000,1800,4,1800,0,,

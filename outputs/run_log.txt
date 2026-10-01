@@ -1,0 +1,15 @@
+$ python run_all.py
+Done. See outputs/issue1_report.md and outputs/issue2_report.md
+
+$ python -m unittest discover tests -v
+test_alert_limit (test_calcs.Issue1) ... ok
+test_email_a_is_relative_delay (test_calcs.Issue1) ... ok
+test_values (test_calcs.Issue1) ... ok
+test_risk (test_calcs.Issue2) ... ok
+test_status (test_calcs.Issue2) ... ok
+test_totals (test_calcs.Issue2) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.078s
+
+OK

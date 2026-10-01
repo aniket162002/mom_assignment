@@ -1,0 +1,20 @@
+[
+  {
+    "supplier": "Kaveri Nuts Pvt Ltd",
+    "po_ref": "PO-2291",
+    "po_qty": 1500,
+    "eta_delay_days": 6,
+    "price_change_pct": null,
+    "price_effective": null,
+    "lead_time_changed": null
+  },
+  {
+    "supplier": "Sai Agro Traders",
+    "po_ref": null,
+    "po_qty": null,
+    "eta_delay_days": null,
+    "price_change_pct": 4.0,
+    "price_effective": "1st Nov",
+    "lead_time_changed": false
+  }
+]

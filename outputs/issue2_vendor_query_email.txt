@@ -1,0 +1,17 @@
+To: accounts@saiagrotraders.example   [address from vendor master, not from the invoice]
+Subject: Query on Bill SAT/889 (PO-2287) - billed qty exceeds goods received
+
+Dear Sai Agro Traders accounts team,
+
+Bill SAT/889 dated 26-Sep-2026 is for 5,000 kg Roasted Peanuts against PO-2287 (Rs 498,750 incl. GST).
+Our goods receipt (GRN) shows 4,800 kg received, a shortfall of 200 kg. Rate (Rs 95/kg) matches the PO.
+
+We cannot release payment for material not received. Please either:
+ (a) send a revised invoice / credit note for 4,800 kg - Rs 456,000 + GST 5% Rs 22,800 = Rs 478,800; or
+ (b) confirm the delivery date and challan/LR number for the balance 200 kg, and we will pay on receipt.
+
+Payment will be processed in the normal cycle once we receive the corrected document.
+
+Regards,
+Accounts Payable, MOM
+[Draft - for Finance Controller approval before sending]
